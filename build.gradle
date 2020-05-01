@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'com.audienceproject', name: 'spark-dynamodb_2.11', version: '1.0.2'
+
+    compile group: 'org.apache.spark', name: 'spark-core_2.11', version: '2.4.4'
+    compile group: 'org.apache.spark', name: 'spark-sql_2.11', version: '2.4.4'
+}
+
+task fatJar(type: Jar) {
+    zip64 true
+    manifest {
+        attributes 'Main-Class': 'com.lcarvalho.sparkddb.WordCount'
+        attributes 'Implementation-Title': 'Spark Job', 'Implementation-Version': version
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+    }
+    baseName = 'WordCountAudience'
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    with jar
+}
