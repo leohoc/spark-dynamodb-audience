@@ -14,6 +14,10 @@ import java.util.Map;
 
 import static org.apache.spark.sql.functions.col;
 
+import org.apache.spark.sql.types.DataTypes;
+import org.apache.spark.sql.types.StructField;
+import org.apache.spark.sql.types.StructType;
+
 public class WordCount {
 
     private static Logger LOGGER = LogManager.getLogger(WordCount.class);
@@ -26,7 +30,15 @@ public class WordCount {
         JavaSparkContext sparkContext = JobConfiguration.buildSparkContext(application, tableName);
         SparkSession sparkSession = SparkSession.builder().sparkContext(sparkContext.sc()).getOrCreate();
 
-        Dataset prophecies = sparkSession.read().option("tableName", tableName).format("dynamodb").load();
+        StructType structType = DataTypes.createStructType(
+                new StructField[] {
+                        DataTypes.createStructField("prophecyDate", DataTypes.StringType, true),
+                        DataTypes.createStructField("prophetCode", DataTypes.StringType, true),
+                        DataTypes.createStructField("prophecySummary", DataTypes.StringType, true)
+                }
+        );
+
+        Dataset prophecies = sparkSession.read().option("tableName", tableName).format("dynamodb").schema(structType).load();
         Dataset filteredProphecies = prophecies.filter(col("prophecyDate").equalTo("2020-05-02"));
         LOGGER.info("filtered prophecies count: " + filteredProphecies.count());
 

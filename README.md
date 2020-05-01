@@ -6,7 +6,7 @@
 
 Implementation of a WordCount Apache Spark application using input data stored in a DynamoDB table.
 
-This project connect to DynamoDB using the [Audience Project data source](https://github.com/audienceproject/spark-dynamodb). For examples using the [AWS emr-dynamodb-connector](https://github.com/awslabs/emr-dynamodb-connector), see [spark-dynamodb-example](https://github.com/leohoc/spark-dynamodb-example).
+This project connects to DynamoDB using the [Audience Project data source](https://github.com/audienceproject/spark-dynamodb). For examples using the [AWS emr-dynamodb-connector](https://github.com/awslabs/emr-dynamodb-connector), see [spark-dynamodb-example](https://github.com/leohoc/spark-dynamodb-example).
 
 #### Install requirements
 
