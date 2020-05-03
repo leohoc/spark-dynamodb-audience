@@ -37,7 +37,7 @@ Instructions:
 
 ```
 
-2. the application file will be generated in build/libs/Covid19CitationsWordCount-1.0.jar.
+2. the application file will be generated in build/libs/Covid19CitationsWordCount-1.0-SNAPSHOT.jar.
 
 #### Running in the AWS EMR cluster
 
@@ -49,7 +49,7 @@ Instructions:
 
 ```bash
 
-aws s3 cp s3://spark-dynamodb-example/<app_name>.jar .
+aws s3 cp s3://spark-dynamodb-example/Covid19CitationsWordCount-1.0-SNAPSHOT.jar .
 
 ```
 
@@ -57,6 +57,6 @@ aws s3 cp s3://spark-dynamodb-example/<app_name>.jar .
  
 ```bash
 
-spark-submit <app_name>.jar
+spark-submit --packages com.audienceproject:spark-dynamodb_2.11:1.0.2 Covid19CitationsWordCount-1.0-SNAPSHOT.jar
 
 ```  
