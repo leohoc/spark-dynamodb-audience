@@ -22,7 +22,7 @@ Follow the instructions of the [spark-dynamodb-infrastructure](https://github.co
 
 The DynamoDB input data used in this project was generated using the instructions contained in [spark-dynamodb-example](https://github.com/leohoc/spark-dynamodb-example).
 
-##### Spark App #1: Counting the words in the COVID-19 citations titles 
+#### Spark App #1: Counting the words in the COVID-19 citations titles 
 
 The Covid19CitationsWordCount application will count the number of times each word was used in the COVID-19 citations titles and store the result in a DynamoDB table.
 Instructions:
